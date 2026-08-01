@@ -1,0 +1,22 @@
+# Operating system
+.DS_Store
+Thumbs.db
+desktop.ini
+
+# Editors
+.vscode/
+.idea/
+*.swp
+
+# Node (only ever present when running a local server such as npx serve)
+node_modules/
+package-lock.json
+npm-debug.log*
+*.log
+
+# Environment
+.env
+.env.*
+
+# Hosting
+.vercel/

@@ -1,0 +1,363 @@
+/* components.css — wordmark, pills, menu, panels, footer */
+
+/* ── Wordmark ────────────────────────────────────────────── */
+
+.wordmark {
+  display: flex;
+  align-items: center;
+  min-height: var(--tap-target);
+  padding-inline: var(--space-4);
+  border-radius: var(--radius-pill);
+  background: var(--color-ink);
+  color: var(--color-surface);
+  font-size: var(--text-sm);
+  letter-spacing: 0.14em;
+  transition: background-color var(--transition-fast), color var(--transition-fast);
+}
+
+a.wordmark:hover {
+  background: var(--color-lime);
+  color: var(--color-ink);
+}
+
+/* ── Pills ───────────────────────────────────────────────── */
+
+.pill {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: var(--space-2);
+  min-height: var(--tap-target);
+  padding-inline: var(--space-3);
+  border: var(--border-width) solid var(--color-line);
+  border-radius: var(--radius-pill);
+  font-size: var(--text-sm);
+  font-weight: 500;
+  white-space: nowrap;
+  transition: background-color var(--transition-fast),
+              color var(--transition-fast),
+              border-color var(--transition-fast);
+}
+
+.pill:hover {
+  border-color: var(--color-ink);
+  background: var(--color-ink);
+  color: var(--color-surface);
+}
+
+.pill:active {
+  background: var(--color-muted);
+  border-color: var(--color-muted);
+}
+
+.pill--solid {
+  border-color: var(--color-ink);
+  background: var(--color-ink);
+  color: var(--color-surface);
+}
+
+.pill--solid:hover {
+  border-color: var(--color-lime);
+  background: var(--color-lime);
+  color: var(--color-ink);
+}
+
+/* ── Menu toggle and mobile menu ─────────────────────────── */
+
+.menu-toggle {
+  gap: var(--space-3);
+  padding-inline: var(--space-3) var(--space-1);
+}
+
+.menu-toggle__icon {
+  position: relative;
+  width: 2.25rem;
+  height: 2.25rem;
+  border-radius: var(--radius-pill);
+  background: var(--color-muted);
+  transition: background-color var(--transition-fast);
+}
+
+.menu-toggle__icon::before,
+.menu-toggle__icon::after {
+  content: "";
+  position: absolute;
+  left: 50%;
+  width: 1rem;
+  height: 2px;
+  border-radius: 2px;
+  background: var(--color-surface);
+  transform: translate(-50%, -50%);
+  transition: top var(--transition-fast), transform var(--transition-fast);
+}
+
+.menu-toggle__icon::before {
+  top: calc(50% - 4px);
+}
+
+.menu-toggle__icon::after {
+  top: calc(50% + 4px);
+}
+
+.menu-toggle:hover .menu-toggle__icon {
+  background: var(--color-lime);
+}
+
+.menu-toggle:hover .menu-toggle__icon::before,
+.menu-toggle:hover .menu-toggle__icon::after {
+  background: var(--color-ink);
+}
+
+.menu-toggle[aria-expanded="true"] .menu-toggle__icon::before,
+.menu-toggle[aria-expanded="true"] .menu-toggle__icon::after {
+  top: 50%;
+}
+
+.menu-toggle[aria-expanded="true"] .menu-toggle__icon::before {
+  transform: translate(-50%, -50%) rotate(45deg);
+}
+
+.menu-toggle[aria-expanded="true"] .menu-toggle__icon::after {
+  transform: translate(-50%, -50%) rotate(-45deg);
+}
+
+.mobile-menu {
+  position: fixed;
+  inset: 0;
+  z-index: 20;
+  display: flex;
+  align-items: flex-end;
+  padding: var(--space-2);
+  background: rgba(17, 17, 17, 0.6);
+}
+
+.mobile-menu[hidden] {
+  display: none;
+}
+
+body.has-menu-open {
+  overflow: hidden;
+}
+
+.mobile-menu__nav {
+  width: 100%;
+  max-height: calc(100svh - var(--space-6));
+  padding: var(--space-4);
+  border-radius: var(--radius-panel);
+  background: var(--color-surface);
+  overflow-y: auto;
+}
+
+.mobile-menu__list a {
+  display: flex;
+  align-items: center;
+  min-height: var(--tap-target);
+  padding-inline: var(--space-2);
+  border-radius: var(--radius-pill);
+  font-size: var(--text-lg);
+  font-weight: 700;
+  transition: background-color var(--transition-fast), color var(--transition-fast);
+}
+
+.mobile-menu__list a:hover {
+  background: var(--color-ink);
+  color: var(--color-surface);
+}
+
+.mobile-menu__list--secondary {
+  margin-top: var(--space-3);
+  padding-top: var(--space-3);
+  border-top: var(--border-width) solid var(--color-line);
+}
+
+.mobile-menu__list--secondary a {
+  font-size: var(--text-base);
+  font-weight: 500;
+  color: var(--color-muted);
+}
+
+.mobile-menu__list--secondary a:hover {
+  color: var(--color-surface);
+}
+
+/* ── Panels ──────────────────────────────────────────────── */
+
+.panel__media {
+  position: absolute;
+  inset: 0;
+  z-index: -2;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+
+/* Scrim over the photograph: the sky behind the type is a mid grey,
+   so white text needs it to clear 4.5:1. */
+.panel--photography::after {
+  content: "";
+  position: absolute;
+  inset: 0;
+  z-index: -1;
+  background: linear-gradient(180deg, rgba(17, 17, 17, 0.45), rgba(17, 17, 17, 0.58));
+}
+
+.panel--photography,
+.panel--art-direction {
+  color: var(--color-surface);
+  /* Flip the focus ring too, so it never lands white on white. */
+  --color-focus: var(--color-surface);
+}
+
+.panel--photography {
+  background: var(--color-muted);
+  isolation: isolate;
+}
+
+.panel--art-direction {
+  background: var(--color-ink);
+}
+
+.panel--accountancy {
+  background: var(--color-lime);
+}
+
+.panel__letter {
+  padding-bottom: var(--space-2);
+  border-bottom: var(--border-width) solid var(--color-line-inverse);
+  font-size: var(--text-display);
+  font-weight: 700;
+  line-height: 0.85;
+}
+
+.panel--accountancy .panel__letter {
+  border-bottom-color: var(--color-line);
+}
+
+.panel__topics {
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-1);
+  font-weight: 700;
+}
+
+.panel__text {
+  max-width: 62ch;
+  font-size: var(--text-md);
+}
+
+.panel__text span {
+  text-decoration: underline;
+  text-underline-offset: 3px;
+}
+
+.panel__title {
+  padding: var(--space-1) var(--space-2);
+  border: var(--border-width) solid currentColor;
+  border-radius: var(--radius-pill);
+  font-size: var(--text-sm);
+  letter-spacing: 0.06em;
+  text-transform: uppercase;
+}
+
+.panel__caption {
+  display: none;
+  font-size: var(--text-xs);
+  letter-spacing: 0.04em;
+}
+
+.panel__toggle {
+  display: none;
+  align-items: center;
+  justify-content: center;
+  min-width: var(--tap-target);
+  min-height: var(--tap-target);
+  margin-left: auto;
+  border: var(--border-width) solid currentColor;
+  border-radius: var(--radius-pill);
+  transition: background-color var(--transition-fast), color var(--transition-fast);
+}
+
+.panel__toggle .icon {
+  transition: transform var(--transition-fast);
+}
+
+.panel__toggle:hover .icon,
+.panel__toggle:focus-visible .icon {
+  transform: translateX(2px);
+}
+
+/* Pills sitting on a coloured panel follow the panel's own ink. */
+
+.panel .pill {
+  border-color: currentColor;
+}
+
+.panel .pill:hover {
+  border-color: var(--color-surface);
+  background: var(--color-surface);
+  color: var(--color-ink);
+}
+
+/* ── Footer ──────────────────────────────────────────────── */
+
+.site-footer__note {
+  max-width: 62ch;
+  font-size: var(--text-sm);
+  color: var(--color-muted);
+}
+
+/* ── Media queries ───────────────────────────────────────── */
+
+@media (min-width: 768px) {
+  /* The nav pills take over from here, so the sheet is dropped
+     from the tab order entirely. */
+  .menu-toggle {
+    display: none;
+  }
+}
+
+@media (min-width: 1024px) {
+  /* Wide screens get the collapsed / expanded interaction:
+     topics by default, the full text once a panel opens. */
+  .panel__text {
+    display: none;
+  }
+
+  /* 404: a lone panel with nothing to expand, so its text always shows. */
+  .panel__text--always {
+    display: block;
+  }
+
+  .panel__toggle {
+    display: flex;
+  }
+
+  .panel.is-open .panel__topics {
+    display: none;
+  }
+
+  .panel.is-open .panel__text,
+  .panel.is-open .panel__caption {
+    display: block;
+  }
+
+  .panel.is-open .panel__toggle {
+    background: var(--color-surface);
+    color: var(--color-ink);
+  }
+
+  .panel--accountancy.is-open .panel__toggle {
+    background: var(--color-ink);
+    color: var(--color-surface);
+  }
+
+  .panel__toggle:hover {
+    background: var(--color-surface);
+    color: var(--color-ink);
+  }
+
+  .panel--accountancy .panel__toggle:hover {
+    background: var(--color-ink);
+    color: var(--color-surface);
+  }
+}

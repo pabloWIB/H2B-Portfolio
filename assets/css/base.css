@@ -1,0 +1,180 @@
+/* base.css — design tokens, reset, typography, utilities */
+
+/* ── Variables ───────────────────────────────────────────── */
+
+:root {
+  /* Palette, derived from the colours the site already used:
+     black panel, lime panel (#C3DA37) and a grey pill (#919191,
+     darkened here to #6E6E6E so white text on it clears 4.5:1). */
+  --color-ink: #111111;
+  --color-surface: #ffffff;
+  --color-lime: #c3da37;
+  --color-muted: #6e6e6e;
+  --color-line: rgba(17, 17, 17, 0.2);
+  --color-line-inverse: rgba(255, 255, 255, 0.3);
+
+  /* Focus ring colour. Redeclared on dark panels so the ring never
+     ends up white on white. */
+  --color-focus: var(--color-ink);
+
+  /* Spacing scale: 4 / 8 / 16 / 24 / 32 / 48 / 64 / 96 */
+  --space-1: 0.25rem;
+  --space-2: 0.5rem;
+  --space-3: 1rem;
+  --space-4: 1.5rem;
+  --space-5: 2rem;
+  --space-6: 3rem;
+  --space-7: 4rem;
+  --space-8: 6rem;
+
+  /* Type scale */
+  --text-xs: 0.75rem;
+  --text-sm: 0.8125rem;
+  --text-base: 1rem;
+  --text-md: 1.0625rem;
+  --text-lg: 1.25rem;
+  --text-display: clamp(5.5rem, 17vw, 9rem);
+
+  --font-sans: "Inter", system-ui, -apple-system, "Segoe UI", sans-serif;
+  --leading-tight: 1.1;
+  --leading-normal: 1.5;
+
+  --radius-panel: 24px;
+  --radius-pill: 999px;
+
+  --border-width: 1px;
+  --tap-target: 44px;
+  --container-max: 1800px;
+
+  --transition-fast: 160ms ease;
+  --transition-panel: 240ms ease;
+}
+
+/* ── Reset ───────────────────────────────────────────────── */
+
+*,
+*::before,
+*::after {
+  box-sizing: border-box;
+}
+
+html {
+  -webkit-text-size-adjust: 100%;
+}
+
+body,
+h1,
+h2,
+h3,
+p,
+ul,
+figure {
+  margin: 0;
+}
+
+ul {
+  padding: 0;
+  list-style: none;
+}
+
+img,
+svg {
+  display: block;
+  max-width: 100%;
+}
+
+button {
+  margin: 0;
+  padding: 0;
+  border: 0;
+  background: none;
+  font: inherit;
+  color: inherit;
+  cursor: pointer;
+}
+
+a {
+  color: inherit;
+}
+
+/* ── Base ────────────────────────────────────────────────── */
+
+body {
+  min-height: 100vh;
+  min-height: 100svh;
+  display: flex;
+  flex-direction: column;
+  padding: var(--space-2);
+  gap: var(--space-2);
+  background: var(--color-surface);
+  color: var(--color-ink);
+  font-family: var(--font-sans);
+  font-size: var(--text-base);
+  line-height: var(--leading-normal);
+}
+
+h1,
+h2,
+h3 {
+  font-size: inherit;
+  font-weight: 700;
+  line-height: var(--leading-tight);
+}
+
+a {
+  text-decoration: none;
+}
+
+:focus-visible {
+  outline: 2px solid var(--color-focus);
+  outline-offset: 3px;
+}
+
+/* ── Utilities ───────────────────────────────────────────── */
+
+.sr-only {
+  position: absolute;
+  width: 1px;
+  height: 1px;
+  margin: -1px;
+  padding: 0;
+  border: 0;
+  overflow: hidden;
+  clip-path: inset(50%);
+  white-space: nowrap;
+}
+
+.skip-link {
+  position: absolute;
+  top: var(--space-2);
+  left: var(--space-2);
+  z-index: 30;
+  padding: var(--space-2) var(--space-3);
+  border-radius: var(--radius-pill);
+  background: var(--color-ink);
+  color: var(--color-surface);
+  font-size: var(--text-sm);
+  font-weight: 500;
+  transform: translateY(-200%);
+  transition: transform var(--transition-fast);
+}
+
+.skip-link:focus-visible {
+  transform: translateY(0);
+}
+
+.icon {
+  flex: none;
+}
+
+/* ── Media queries ───────────────────────────────────────── */
+
+@media (prefers-reduced-motion: reduce) {
+  *,
+  *::before,
+  *::after {
+    transition-duration: 1ms !important;
+    animation-duration: 1ms !important;
+    animation-iteration-count: 1 !important;
+  }
+}
