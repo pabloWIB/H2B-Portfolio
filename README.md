@@ -2,7 +2,7 @@
 
 A single-page layout that files three disciplines under one wordmark — the `H`, the `2` and the `B` are the sections.
 
-[![Live demo](https://img.shields.io/badge/demo-h2b.wib.digital-2ea44f)](https://h2b.wib.digital)
+[![Live demo](https://img.shields.io/badge/demo-pablowib.github.io/H2B-Portfolio-2ea44f)](https://pablowib.github.io/H2B-Portfolio)
 [![Hire me on Fiverr](https://img.shields.io/badge/Hire%20me%20on-Fiverr-1DBF73?style=for-the-badge&logo=fiverr&logoColor=white)](https://www.fiverr.com/pablonietop)
 ![Dependencies](https://img.shields.io/badge/dependencies-0-brightgreen)
 ![Build step](https://img.shields.io/badge/build%20step-none-lightgrey)
@@ -115,7 +115,7 @@ Spacing runs on a 4 / 8 / 16 / 24 / 32 / 48 / 64 / 96 scale, and breakpoints are
 
 ## Deployment
 
-Deployed on Vercel at [h2b.wib.digital](https://h2b.wib.digital). Upload the repository
+Deployed on GitHub Pages at [pablowib.github.io/H2B-Portfolio](https://pablowib.github.io/H2B-Portfolio). Upload the repository
 root as-is: no build command, no output directory, no configuration file.
 
 Every internal path is relative and lowercase, so the site is equally safe on a

@@ -1,4 +1,4 @@
 User-agent: *
 Allow: /
 
-Sitemap: https://h2b.wib.digital/sitemap.xml
+Sitemap: https://pablowib.github.io/H2B-Portfolio/sitemap.xml
